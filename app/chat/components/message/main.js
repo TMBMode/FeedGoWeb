@@ -28,7 +28,7 @@ export default function Message({ uid, prompt, setLock }) {
       );
       setLock(false);
     })();
-  }, []);
+  }, [uid, prompt, setLock]);
   return (
     <div className="text-teal-100 flex flex-col">
       <div className="bg-teal-900 p-2">

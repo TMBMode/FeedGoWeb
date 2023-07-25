@@ -4,14 +4,14 @@ const handleInput = (e, callback) => {
   if (e.key === 'Enter') {
     e.preventDefault();
     if (e.ctrlKey) return e.currentTarget.textContent += '\n';
-    callback?.(e.currentTarget.textContent);
+    e.currentTarget.textContent.length && callback?.(e.currentTarget.textContent);
   }
 }
 export default function InputMessage({ callback }) {
   const [ hydrated, setHydrated ] = useState(false);
   useEffect(() => {
     setHydrated(true);
-  })
+  }, [])
   return (
     <div className="text-teal-100 flex flex-col">
       <div className="bg-teal-900 p-2">
