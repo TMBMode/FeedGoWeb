@@ -8,7 +8,7 @@ const STORE_PATH = process.env.STORE_PATH || '/home/ubuntu/feedgo/vstores';
 const stores = fs.readdirSync(STORE_PATH)
   .filter((fileName) => fs.statSync(path.join(STORE_PATH, fileName)).isDirectory());
 
-export default function Config({ uid }) {
+export default function Config() {
   return (
     <div className="w-full h-full md:w-3/4 md:h-4/5 md:rounded-l-lg overflow-hidden">
       <div className="w-full h-full p-4 flex flex-row flex-wrap items-center justify-center">
@@ -16,11 +16,7 @@ export default function Config({ uid }) {
           return (
             <div className="m-4" key={i}>
               <Link href={{
-                pathname: '/chat',
-                query: {
-                  uid,
-                  name: store
-                }
+                pathname: `/chat/${store}`
               }}>
                 <Button color="blue">{store}</Button>
               </Link>

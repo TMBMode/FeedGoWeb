@@ -38,7 +38,7 @@ export default function Message({ uid, prompt, setLock }) {
           </div>
         </div>
         <div className="inline-block pr-4"></div>
-        <div className="inline-block whitespace-pre-wrap w-[95%] break-words">
+        <div className="inline-block whitespace-pre-wrap w-[82%] md:w-[95%] break-words">
           {prompt}
         </div>
         {(res && showDetail) && <Detail res={res} />}

@@ -14,11 +14,11 @@ export const tribool = (text) => {
 
 const uidChars = '0123456789ACEFGHJKLMNPQRTVWXYZ';
 export const generateUid = (len=6) => {
-  console.log('gen');
   let res = '';
   for (let i = 0; i < len; i++) {
     res += uidChars[randint(0, uidChars.length-1)];
   }
+  console.log(res);
   return res;
 }
 
