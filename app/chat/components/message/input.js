@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-const handleInput = (e, callback) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    if (e.ctrlKey) return e.currentTarget.textContent += '\n';
-    e.currentTarget.textContent.length && callback?.(e.currentTarget.textContent);
-  }
-}
-export default function InputMessage({ callback }) {
+export default function InputMessage({ callback, children, canEdit = true }) {
   const [ hydrated, setHydrated ] = useState(false);
+  const handleInput = useCallback((e) => {
+    if (e.key === 'Enter' && canEdit) {
+      e.preventDefault();
+      if (e.ctrlKey) return e.currentTarget.textContent += '\n';
+      e.currentTarget.textContent.length && callback?.(e.currentTarget.textContent);
+    }
+  }, [callback, canEdit]);
   useEffect(() => {
     setHydrated(true);
   }, [])
@@ -22,10 +22,10 @@ export default function InputMessage({ callback }) {
         </div>
         <div className="inline-block pr-4"></div>
         <div
-          contentEditable={hydrated}
+          contentEditable={hydrated && canEdit}
           className="inline-block whitespace-pre-wrap w-[95%] break-words focus:outline-none"
-          onKeyDown={(e) => handleInput(e, callback)}
-        ></div>
+          onKeyDown={(e) => handleInput(e)}
+        >{children}</div>
       </div>
     </div>
   )

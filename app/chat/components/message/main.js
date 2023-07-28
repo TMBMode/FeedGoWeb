@@ -12,13 +12,12 @@ export default function Message({ uid, prompt, setLock }) {
   useEffect(() => {
     setLock(true);
     (async () => {
-      const res = await fetch('/api', {
+      const res = await fetch('/api/complete', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          type: 'complete',
           uid: uid,
           text: prompt
         })
